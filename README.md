@@ -1,29 +1,37 @@
-# repository1
+This is the readme.
 
-test a change
+# Help
+- See [help.md](docs/help.md) for more instructions, or [installing.md][].
+- See external help at [storage][storage].
+- And, http://cloud.google.com
+- Don't see ~~this~~.
 
-second change
+[installing.md]: docs/installing.md
 
-third change
+> Pardon my french.
 
-fourth change
+*italic* and **bold** and **combined _cool_ styling**!
 
-fifth change (by marcgel)
+[storage]: https://cloud.google.com/storage/docs
 
-sixth change (by travelmarx)
+Run this command:
 
-seventh change (by travelmarx)
+```
+gsutil help
+```
 
-eighth change (by travelmarx)
+Here's an idea: why don't we take `SuperiorProject` and turn it into `**Reasonable**Project`.
 
-nineth change (by travelmarx)
+1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
+2. Item 2
+  * A corollary that does not need to be ordered.
+    * This is indented four spaces, because it's two spaces further than the item above.
+    * You might want to consider making a new list.
+3. Item 3
 
-tenth change (by travelmarx)
-
-eleventh change (by travelmarx)
-
-twelfth change (by travelmarx)
-
-13th change (by travelmarx)
-
-14th change (by travelmarx)
+- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> are supported
+- [x] list syntax is required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
