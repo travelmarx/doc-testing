@@ -1,29 +1,7 @@
-# repository1
+This is the readme.
 
-test a change
+# Help
+- See [help][] for more instructions, or not.
+- See external help at [storage][storage].
 
-second change
-
-third change
-
-fourth change
-
-fifth change (by marcgel)
-
-sixth change (by travelmarx)
-
-seventh change (by travelmarx)
-
-eighth change (by travelmarx)
-
-nineth change (by travelmarx)
-
-tenth change (by travelmarx)
-
-eleventh change (by travelmarx)
-
-twelfth change (by travelmarx)
-
-13th change (by travelmarx)
-
-14th change (by travelmarx)
+[storage]: cloud.google.com/storage/docs
