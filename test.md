@@ -43,8 +43,107 @@ objects.</dd>
 <dt>POSIX Support</dt>
 <dd>You can use a subset of POSIX functions that align with file and directory support, for example, opendir(), readdir(), rmdir() and closedir(). For a detailed discussion of semantics, see the [Semantics][semantics].</dd>
 
+## Billing
+
+gcsfuse is available free of charge, but the storage, metadata, and network IO it generates to and from Google Cloud Storage is charged like any other Cloud Storage interface. You should be aware of the following charges related to using gcsfuse:
+
+* Normal buckets operations (create, delete, and list) incur charges as described in the [Operations][pricing-ops] section of the Cloud Storage pricing page.
+
+* Nearline Storage buckets have costs associated with retrieval and early deletion. See [Nearline Storage][pricing-nearline] on the Cloud Storage pricing page.
+
+* Network egress charges and data transfer between regions and continents incur costs. See the [Network][pricing-network] section on the Cloud Storage pricing page.
+
+Also, if you are moving data into or out of Google cloud, data transfer across regions and continents, depending on the scenario, might incur transfer costs. For more information, see the Google Cloud Platform
+[pricing][pricing-cloud] page.
+
+## Installing
+
+gcsfuse works on  Linux and OS X operating systems. For detailed help on satisfying these prerequisites see [Prerequisites][install-prereq].
+
+Prerequisites:
+
+*   gcsfuse is distributed as source code in the [Go][go] language. If you do
+    not yet have Go installed, see [here][go-install] for instructions. Be sure
+    to follow the linked [setup instructions][go-setup], in particular setting
+    the `GOPATH` environment variable and ensuring `$GOPATH/bin` is in your
+    `PATH` environment variable.
+
+*   OS X only: Before using gcsfuse, you must have [FUSE for OS X][osxfuse].
+    Installing FUSE is not necessary on Linux, since modern versions have kernel
+    support built in.
+
+*   The `go get` command below will need to fetch source code from GitHub,
+    which requires [Git][git]. If the `git` binary is not installed on your
+    system, download it [here][git-download] or install it by some other means
+    (for example on Google Compute Engine Debian instances you can run
+    `sudo apt-get update && sudo apt-get install git-core`).
+
+*   A service account credential to allow {{feat_name}} to authenticate.
+    <section class="expandable">
+      <span class="showalways"><strong>Expand to see how to create a service
+      account credential.</strong></span>
+      <ol>
+      {% include "storage/docs/_shared/_create_service_account.html" %}
+      </ol>
+    </section>
+
+After you have satisfied the prerequisites, you can install {{feat_name}} by
+running:
+
+    $ go get github.com/googlecloudplatform/gcsfuse
+
+This will fetch the {{feat_name}} sources, build them, and install a binary named gcsfuse to `$GOPATH/bin`.
+
+## Using gcsfuse
+
+### Manually mounting
+
+Use gcsfuse interactively for testing or debugging. In general, you will most likely auto-mount buckets as shown in the next section.
+
+1. Create a directory.
+
+        $ mkdir gcs
+
+2. Use {{feat_name}} to mount a bucket.
+
+        $ gcsfuse --key_file /path/to/client_secrets.json --bucket example-bucket gcs
+
+3. Start working with the mounted bucket.
+
+        $ ls gcs
+
+4. Unmount the bucket when finished.
+
+        $ umount gcs
+
+### Automatically mounting
+
+Automatically mounting buckets means configuring the `/etc/fstab` so that buckets are automatically mounted after instance reboots or failures.
+
+1. Create service account credential as is shown above and make sure the key is in a location that TBD.
+
+2. [TBD] Edit the `/etc/fstab` file and put the following:
+
+        # <file system>   <dir>  <type>    <options>   <dump> <pass>
+        TBD
+
+3. Test `/etc/fstab` file:
+
+        $ mount -a
+
+
 [gsutil-docs]: https://cloud.google.com/storage/docs/gsutil
 [persistent-docs]: https://cloud.google.com/compute/docs/disks/persistent-disks
 [ssd-docs]: https://cloud.google.com/compute/docs/disks/local-ssd
 [service-account]: https://cloud.google.com/storage/docs/authentication#service_accounts
 [semantics]: https://github.com/GoogleCloudPlatform/gcsfuse/blob/master/docs/semantics.md
+[pricing-ops]: https://cloud.google.com/storage/pricing#operations-pricing
+[pricing-nearline]: https://cloud.google.com/storage/pricing#nearline-pricing
+[pricing-network]: https://cloud.google.com/storage/pricing#network-pricing
+[pricing-cloud]: https://cloud.google.com/pricing
+[go]: http://golang.org/
+[go-install]: http://golang.org/doc/install
+[go-setup]: http://golang.org/doc/code.html
+[osxfuse]: https://osxfuse.github.io/
+[git]: http://git-scm.com/
+[git-download]: http://git-scm.com/downloads
