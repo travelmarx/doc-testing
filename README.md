@@ -3,6 +3,12 @@ This is the readme.
 # Help
 - See [help.md][] for more instructions, or not.
 - See external help at [storage][storage].
+- And, http://cloud.google.com
+- Don't see ~~this~~.
+
+> Pardon my french.
+
+*italic* and **bold** and **combined _cool_ styling**!
 
 [storage]: https://cloud.google.com/storage/docs
 
@@ -12,9 +18,18 @@ Run this command:
 gsutil help
 ```
 
-This will show help for `gsutil`.
+Here's an idea: why don't we take `SuperiorProject` and turn it into `**Reasonable**Project`.
 
+1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
+2. Item 2
+  * A corollary that does not need to be ordered.
+    * This is indented four spaces, because it's two spaces further than the item above.
+    * You might want to consider making a new list.
+3. Item 3
 
-## FAQ
-
-How can I do this?
+- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> are supported
+- [x] list syntax is required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
