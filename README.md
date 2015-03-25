@@ -1,10 +1,12 @@
 This is the readme.
 
 # Help
-- See [help.md](docs/help.md) for more instructions, or not.
+- See [help.md](docs/help.md) for more instructions, or [installing.md][].
 - See external help at [storage][storage].
 - And, http://cloud.google.com
 - Don't see ~~this~~.
+
+[installing.md]: docs/installing.md
 
 > Pardon my french.
 
