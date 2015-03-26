@@ -134,7 +134,7 @@ Here are some best practices when working with gcsfuse.
   If your instance fails or if you reboot it and you manually mounted your
   bucket, you need to remount the bucket. You can remount buckets
   automatically by modifying the `/etc/fstab` file (see
-  [Automatically mounting](#fstab)).
+  [Automatically mounting](#user-content-automatically-mounting)).
 </dd>
 <dt>NFS mounts<dt>
 <dd>
