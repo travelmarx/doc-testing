@@ -61,6 +61,15 @@ Authentication will be for the Google account mounting the filesystem, not the U
 
 You can use a subset of POSIX functions that align with file and directory support, for example, opendir(), readdir(), rmdir() and closedir(). For a detailed discussion of semantics, see the [Semantics][semantics].
 
+## Performance
+
+Performance when copying data into GCS is comparable to gsutil (see
+[issue #22][issue-22] for testing notes). There is some overhead due to staging
+of data in temporary files before writing out to GCS, which is unavoidable given
+the file system semantics.
+
+If you notice unreasonable performance, please [file an issue][issues].
+
 ## Billing
 
 gcsfuse is available free of charge, but the storage, metadata, and network IO it generates to and from Google Cloud Storage is charged like any other Cloud Storage interface. You should be aware of the following charges related to using gcsfuse:
@@ -227,7 +236,6 @@ TBD.
 
 No.
 
-
 [gsutil-docs]: https://cloud.google.com/storage/docs/gsutil
 [persistent-docs]: https://cloud.google.com/compute/docs/disks/persistent-disks
 [ssd-docs]: https://cloud.google.com/compute/docs/disks/local-ssd
@@ -246,3 +254,5 @@ No.
 [gcsfuse-users]: https://groups.google.com/group/gcsfuse-users
 [console]: https://console.developers.google.com
 [compute-linux]: https://cloud.google.com/compute/docs/operating-systems/linux-os
+[issue-22]: https://github.com/GoogleCloudPlatform/gcsfuse/issues/22
+[issues]: https://github.com/googlecloudplatform/gcsfuse/issues
