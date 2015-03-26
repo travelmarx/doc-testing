@@ -32,29 +32,34 @@ For in-cloud, single node file storage use case, we recommend that you attach a 
 
 gcsfuse supports all file-oriented POSIX semantics: open, close, read, write, list, stat, and rename. However, there are some use cases where gcsfuse currently works best. Use the following characteristics as guidelines:
 
-<dl>
-<dt>Random Reads Performance</dt>
-<dd>gcsfuse works best with less seeks and a large amount of data read as compared to many seeks and small amounts of data read. If you are using gcsfuse in the later scenario, you can use local cache to improve performance.</dd>
+**Random Reads Performance**
 
-<dt>Random Writes</dt>
-<dd>gcsfuse simulates random writes by downloading the entire object into a cache, letting you edit the local copy, and writing the entire object back. This is functional, but can have low performance for small edits to large
-objects.</dd>
+gcsfuse works best with less seeks and a large amount of data read as compared to many seeks and small amounts of data read. If you are using gcsfuse in the later scenario, you can use local cache to improve performance.
 
-<dt>Write Cache</dt>
-<dd>Because writes are cached until the file is closed, you can lose data that’s been written and even flushed but not yet saved to Google Cloud Storage, such as for a VM crash after some writes but before file closes.  Readers will not see writes until they are committed which can be arbitrarily far off.</dd>
+**Random Writes**
 
-<dt>Write Concurrency</dt>
-<dd>gcsfuse provides close-to-open consistency, but concurrent modifications by other processes, including from the Google Cloud Storage XML or JSON API to the same file (object) result in last write wins.</dd>
+gcsfuse simulates random writes by downloading the entire object into a cache, letting you edit the local copy, and writing the entire object back. This is functional, but can have low performance for small edits to large
+objects.
 
-<dt>Operation Atomicity</dt>
-<dd>Some operations like rename() are more than one non-atomic call that can be impacted by a system failure and leave data in an unexpected state.</dd>
+**Write Cache**
 
-<dt>Identity</dt>
-<dd>Authentication will be for the Google account mounting the filesystem, not the UID of the user.  Authentication is through a [service account][service-account] credential.</dd>
+Because writes are cached until the file is closed, you can lose data that’s been written and even flushed but not yet saved to Google Cloud Storage, such as for a VM crash after some writes but before file closes.  Readers will not see writes until they are committed which can be arbitrarily far off.
 
-<dt>POSIX Support</dt>
-<dd>You can use a subset of POSIX functions that align with file and directory support, for example, opendir(), readdir(), rmdir() and closedir(). For a detailed discussion of semantics, see the [Semantics][semantics].</dd>
-</dl>
+**Write Concurrency**
+
+gcsfuse provides close-to-open consistency, but concurrent modifications by other processes, including from the Google Cloud Storage XML or JSON API to the same file (object) result in last write wins.
+
+**Operation Atomicity**
+
+Some operations like rename() are more than one non-atomic call that can be impacted by a system failure and leave data in an unexpected state.
+
+**Identity**
+
+Authentication will be for the Google account mounting the filesystem, not the UID of the user.  Authentication is through a [service account][service-account] credential.
+
+**POSIX Support**
+
+You can use a subset of POSIX functions that align with file and directory support, for example, opendir(), readdir(), rmdir() and closedir(). For a detailed discussion of semantics, see the [Semantics][semantics].
 
 ## Billing
 
@@ -192,7 +197,7 @@ Yes. You can work with any other tools you use with Google Cloud Storage, includ
 
 **Can I multiple buckets?**
 
-Use {{feat_name}} multiple times to mount multiple buckets.
+Use gcsfuse multiple times to mount multiple buckets.
 
 **Can I use gcsfuse on Google Compute Engine instances?**
 
