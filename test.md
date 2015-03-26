@@ -1,16 +1,14 @@
 # Table of Contents
 
- * []()
-    * [Introduction](#introduction)
-    * [Scope](#scope)
-    * [Billing](#billing)
-    * [Installing](#installing)
-    * [Using gcsfuse](#using-gcsfuse)
-      * [Manually mounting](#manually-mounting)
-      * [Automatically mounting](#automatically-mounting)
-    * [Best Practices](#best-practices)
-    * [FAQ](#faq)
- * []()
+ * [Introduction](#introduction)
+ * [Scope](#scope)
+ * [Billing](#billing)
+ * [Installing](#installing)
+ * [Using gcsfuse](#using-gcsfuse)
+   * [Manually mounting](#manually-mounting)
+   * [Automatically mounting](#automatically-mounting)
+ * [Best Practices](#best-practices)
+ * [FAQ](#faq)
 
 ## Introduction
 
