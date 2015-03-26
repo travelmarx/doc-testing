@@ -1,3 +1,17 @@
+Table of Contents
+=================
+    * [Introduction](#introduction)
+    * [Scope](#scope)
+    * [Billing](#billing)
+    * [Installing](#installing)
+    * [Using gcsfuse](#using-gcsfuse)
+      * [Manually mounting](#manually-mounting)
+      * [Automatically mounting](#automatically-mounting)
+    * [Best Practices](#best-practices)
+ * []()
+    * [FAQ](#faq)
+ * []()
+
 ## Introduction
 
 gcsfuse is an open-source tool that enables you to interact with Cloud Storage objects using traditional Unix tools and existing software. Specifically, gcsfuse allows you to mount a Google Cloud Storage bucket as a local file system that supports simple read/write use cases and most POSIX semantics. You can use gcsfuse on any Unix-like environment that supports Filesystem in Userspace (FUSE) including Google Compute Engine instances.
