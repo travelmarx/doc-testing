@@ -126,7 +126,7 @@ Automatically mounting buckets means configuring the `/etc/fstab` so that bucket
 
 ## Best Practices
 
-Here are some best practices when working with {{feat_name}}.
+Here are some best practices when working with gcsfuse.
 
 <dl>
 <dt>Persisting mount through reboots</dt>
@@ -147,22 +147,21 @@ Here are some best practices when working with {{feat_name}}.
 </dd>
 <dt>Synchronizing writes</dt>
 <dd>
-  A file opened for write is not synchronized with {{title}} until it is
+  A file opened for write is not synchronized with Google Cloud Storage until it is
   closed. This means intermediate writes to the file will not be readable by
-  other {{feat_name_short}} users or {{title}} users. This also means that
+  other gcsfuse users or Google Cloud Storage users. This also means that
   applications should be careful to inspect the return code from the POSIX
   close() function, as applications often ignore it.
 </dd>
 <dt>Renaming directories</dt>
 <dd>
   You may not rename directories. Instead, you must delete the old directory
-  and create a new one. For example, you can use <code>cp -lR <var
-  class="apiparam">old_dir</var> <var class="apiparam">new_dir</var></code>,
-  followed by <code>rm -Rf <var class="apiparam">old_dir</var></code>.
+  and create a new one. For example, you can use `cp -lR old_dir new_dir`,
+  followed by `rm -Rf old_dir`.
 </dd>
 <dt>Object rename atomicity</dt>
 <dd>
-  Unlike POSIX, the {{ feat_name_short }} rename() implementation is not
+  Unlike POSIX, the gcsfuse rename() implementation is not
   atomic. It is implemented using a copy-in-the-cloud followed by a delete.
   Therefore, note that both objects will exist for a short period of time and
   may both continue to exist in the event of failure.
@@ -185,7 +184,7 @@ Use {{feat_name}} multiple times to mount multiple buckets.
 
 **Can I use gcsfuse on Google Compute Engine instances?**
 
-Yes. gcsfuse will be supported on all Google Compute Engine [linux operating systems][compute-linux]. If it isn't currently installed, you can follow the [instructions](#installing) above to install it.
+Yes. gcsfuse will be supported on all Google Compute Engine [linux operating systems][compute-linux]. If it isn't currently installed, you can follow the [instructions](#user-content-installing) above to install it.
 
 **How can I update my version of gcsfuse?**
 
