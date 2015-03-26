@@ -1,5 +1,6 @@
-Table of Contents
-=================
+# Table of Contents
+
+ * []()
     * [Introduction](#introduction)
     * [Scope](#scope)
     * [Billing](#billing)
@@ -8,7 +9,6 @@ Table of Contents
       * [Manually mounting](#manually-mounting)
       * [Automatically mounting](#automatically-mounting)
     * [Best Practices](#best-practices)
- * []()
     * [FAQ](#faq)
  * []()
 
@@ -148,7 +148,7 @@ Here are some best practices when working with gcsfuse.
   If your instance fails or if you reboot it and you manually mounted your
   bucket, you need to remount the bucket. You can remount buckets
   automatically by modifying the `/etc/fstab` file (see
-  [Automatically mounting](#user-content-automatically-mounting)).
+  [Automatically mounting](#automatically-mounting)).
 </dd>
 <dt>NFS mounts<dt>
 <dd>
@@ -198,7 +198,7 @@ Use {{feat_name}} multiple times to mount multiple buckets.
 
 **Can I use gcsfuse on Google Compute Engine instances?**
 
-Yes. gcsfuse will be supported on all Google Compute Engine [linux operating systems][compute-linux]. If it isn't currently installed, you can follow the [instructions](#user-content-installing) above to install it.
+Yes. gcsfuse will be supported on all Google Compute Engine [linux operating systems][compute-linux]. If it isn't currently installed, you can follow the [instructions](#installing) above to install it.
 
 **How can I update my version of gcsfuse?**
 
