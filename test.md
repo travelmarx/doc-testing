@@ -42,6 +42,7 @@ objects.</dd>
 
 <dt>POSIX Support</dt>
 <dd>You can use a subset of POSIX functions that align with file and directory support, for example, opendir(), readdir(), rmdir() and closedir(). For a detailed discussion of semantics, see the [Semantics][semantics].</dd>
+</dl>
 
 ## Billing
 
@@ -78,21 +79,14 @@ Prerequisites:
     (for example on Google Compute Engine Debian instances you can run
     `sudo apt-get update && sudo apt-get install git-core`).
 
-*   A service account credential to allow {{feat_name}} to authenticate.
-    <section class="expandable">
-      <span class="showalways"><strong>Expand to see how to create a service
-      account credential.</strong></span>
-      <ol>
-      {% include "storage/docs/_shared/_create_service_account.html" %}
-      </ol>
-    </section>
-
-After you have satisfied the prerequisites, you can install {{feat_name}} by
-running:
+*   A service account credential to allow gcsfuse to authenticate. For more information, see
+    [service accounts][service-account].
+        
+After you have satisfied the prerequisites, you can install gcsfuse by running:
 
     $ go get github.com/googlecloudplatform/gcsfuse
 
-This will fetch the {{feat_name}} sources, build them, and install a binary named gcsfuse to `$GOPATH/bin`.
+This will fetch the gcsfuse sources, build them, and install a binary named gcsfuse to `$GOPATH/bin`.
 
 ## Using gcsfuse
 
@@ -104,7 +98,7 @@ Use gcsfuse interactively for testing or debugging. In general, you will most li
 
         $ mkdir gcs
 
-2. Use {{feat_name}} to mount a bucket.
+2. Mount a bucket.
 
         $ gcsfuse --key_file /path/to/client_secrets.json --bucket example-bucket gcs
 
@@ -112,9 +106,8 @@ Use gcsfuse interactively for testing or debugging. In general, you will most li
 
         $ ls gcs
 
-4. Unmount the bucket when finished.
+4. Stop the gcsfuse process when finished with CTRL+C.
 
-        $ umount gcs
 
 ### Automatically mounting
 
@@ -131,6 +124,52 @@ Automatically mounting buckets means configuring the `/etc/fstab` so that bucket
 
         $ mount -a
 
+## Best Practices
+
+Here are some best practices when working with {{feat_name}}.
+
+<dl>
+<dt>Persisting mount through reboots</dt>
+<dd>
+  If your instance fails or if you reboot it and you manually mounted your
+  bucket, you need to remount the bucket. You can remount buckets
+  automatically by modifying the `/etc/fstab` file (see
+  [Automatically mounting](#fstab)).
+</dd>
+<dt>NFS mounts<dt>
+<dd>
+  If you use the NFS mount as your working directory, you will receive stale
+  file handles when you open more than 10,000 files, or when your instance is
+  routed to a new NFS server endpoint because of NFS termination, which can
+  happen periodically. To avoid stale file handles, use a working directory
+  outside of the NFS mount, and use absolute paths to work with files in the
+  mount.
+</dd>
+<dt>Synchronizing writes</dt>
+<dd>
+  A file opened for write is not synchronized with {{title}} until it is
+  closed. This means intermediate writes to the file will not be readable by
+  other {{feat_name_short}} users or {{title}} users. This also means that
+  applications should be careful to inspect the return code from the POSIX
+  close() function, as applications often ignore it.
+</dd>
+<dt>Renaming directories</dt>
+<dd>
+  You may not rename directories. Instead, you must delete the old directory
+  and create a new one. For example, you can use <code>cp -lR <var
+  class="apiparam">old_dir</var> <var class="apiparam">new_dir</var></code>,
+  followed by <code>rm -Rf <var class="apiparam">old_dir</var></code>.
+</dd>
+<dt>Object rename atomicity</dt>
+<dd>
+  Unlike POSIX, the {{ feat_name_short }} rename() implementation is not
+  atomic. It is implemented using a copy-in-the-cloud followed by a delete.
+  Therefore, note that both objects will exist for a short period of time and
+  may both continue to exist in the event of failure.
+</dd>
+</dl>
+
+## FAQ
 
 [gsutil-docs]: https://cloud.google.com/storage/docs/gsutil
 [persistent-docs]: https://cloud.google.com/compute/docs/disks/persistent-disks
