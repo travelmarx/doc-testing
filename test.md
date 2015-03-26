@@ -171,6 +171,47 @@ Here are some best practices when working with {{feat_name}}.
 
 ## FAQ
 
+**Where can I go to discuss gcsfuse ?**
+
+In the [gcsfuse-users][] group.
+
+**Can I continue to work with my buckets using other tools?**
+
+Yes. You can work with any other tools you use with Google Cloud Storage, including [gsutil][gsutil-docs] and [Google Developers Console][console].
+
+**Can I multiple buckets?**
+
+Use {{feat_name}} multiple times to mount multiple buckets.
+
+**Can I use gcsfuse on Google Compute Engine instances?**
+
+Yes. gcsfuse will be supported on all Google Compute Engine [linux operating systems][compute-linux]. If it isn't currently installed, you can follow the [instructions](#installing) above to install it.
+
+**How can I update my version of gcsfuse?**
+
+Run:
+
+    $ go get -u github.com/googlecloudplatform/gcsfuse
+
+**How can I troubleshoot gcsfuse?**
+
+If you run `gcsfuse` with no arguments, usage information is displayed, including options for showing debug output. One option you can use to help troublshoot is `fuse.debug`.
+
+    $ gcsfuse --fuse.debug --key_file /path/to/client_secrets.json --bucket example-bucket gcs
+
+**Can I set object permissions or ACLs with gcsfuse?**
+
+Setting an object's permissions (e.g., using chmod) is not supported. Viewing and editing Google Cloud Storage Access Control Lists are also not supported.
+
+**Can I create a symbolic link to a file?**
+
+TBD.
+
+**Can I create a hard link to file?**
+
+No.
+
+
 [gsutil-docs]: https://cloud.google.com/storage/docs/gsutil
 [persistent-docs]: https://cloud.google.com/compute/docs/disks/persistent-disks
 [ssd-docs]: https://cloud.google.com/compute/docs/disks/local-ssd
@@ -186,3 +227,6 @@ Here are some best practices when working with {{feat_name}}.
 [osxfuse]: https://osxfuse.github.io/
 [git]: http://git-scm.com/
 [git-download]: http://git-scm.com/downloads
+[gcsfuse-users]: https://groups.google.com/group/gcsfuse-users
+[console]: https://console.developers.google.com
+[compute-linux]: https://cloud.google.com/compute/docs/operating-systems/linux-os
