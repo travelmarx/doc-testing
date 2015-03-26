@@ -2,6 +2,7 @@
 
  * [Introduction](#introduction)
  * [Scope](#scope)
+ * [Performance](#performance)
  * [Billing](#billing)
  * [Installing](#installing)
  * [Using gcsfuse](#using-gcsfuse)
