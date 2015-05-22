@@ -1,8 +1,8 @@
-This is the readme. 1
+This is the readme. 1, 2, 3
 
 # Help
 - See [help.md](docs/help.md) for more instructions, or [installing.md][].
-- See external help at [storage][storage].
+- See external help at [storage][storage]. Help.
 - And, http://cloud.google.com
 - Don't see ~~this~~.
 
